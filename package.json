@@ -1,92 +1,85 @@
 {
-    "name": "react-timezone-picker",
-    "version": "1.0.8",
-    "description": "React Timezone Picker",
-    "main": "dist/index.js",
-    "files": [
-        "dist"
+  "name": "over-map-layout",
+  "version": "0.0.1",
+  "description": "Over-Map Layout",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "build/index.es.js",
+  "author": "Ben Shope <ben@benshope.com> (https://github.com/benshope)",
+  "keywords": [
+    "map layout",
+    "layout",
+    "react",
+    "ui",
+    "component",
+    "react",
+    "small",
+    "simple"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "browserslist": "last 2 versions",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "standard",
+    "format": "prettier-standard --format",
+    "test": "jest --coverage",
+    "storybook": "start-storybook",
+    "deploy": "storybook-to-ghpages"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@storybook/react": "^5.2.8",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^24.0.24",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^5.0.1",
+    "babel-loader": "^8.0.6",
+    "babel-preset-react-app": "^9.1.2",
+    "jest": "^24.9.0",
+    "prettier": "^2.0.4",
+    "prettier-standard": "^16.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.27.13",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "standard": "^14.3.1",
+    "standard-prettier": "^1.0.1",
+    "styled-components": "^5.1.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-dom": "^16",
+    "styled-components": "^5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "build/"
+    ]
+  },
+  "standard": {
+    "ignore": [
+      "node_modules/",
+      "build/"
     ],
-    "scripts": {
-        "build": "./node_modules/.bin/webpack --mode=production",
-        "deploy": "storybook-to-ghpages",
-        "start": "npm run storybook",
-        "storybook": "start-storybook -p 9001"
-    },
-    "author": "Ben Shope <ben@benshope.com> (https://github.com/benshope)",
-    "keywords": [
-        "timezone",
-        "react",
-        "ui",
-        "component",
-        "react",
-        "small",
-        "simple"
-    ],
-    "license": "MIT",
-    "dependencies": {},
-    "peerDependencies": {
-        "react": "^16.8",
-        "react-dom": "^16.8"
-    },
-    "publishConfig": {
-        "registry": "https://registry.npmjs.org/"
-    },
-    "browserslist": "last 2 versions",
-    "devDependencies": {
-        "@babel/core": "^7.3.4",
-        "@babel/preset-env": "^7.3.4",
-        "@babel/preset-react": "^7.0.0",
-        "@storybook/addon-a11y": "^5",
-        "@storybook/addon-actions": "^5",
-        "@storybook/addon-info": "^5",
-        "@storybook/addon-options": "^5",
-        "@storybook/addon-storyshots": "^5",
-        "@storybook/react": "^5",
-        "@storybook/storybook-deployer": "^2.8.1",
-        "babel-cli": "^6.26.0",
-        "eslint": "^5.15.1",
-        "eslint-config-airbnb": "^17.1.0",
-        "eslint-plugin-import": "^2.16.0",
-        "eslint-plugin-jsx-a11y": "^6.2.1",
-        "eslint-plugin-react": "^7.12.4",
-        "prettier": "1.16.4",
-        "react": "^16.8",
-        "react-dom": "^16.8",
-        "webpack-cli": "^3.2.3",
-        "webpack-node-externals": "^1.7.2"
-    },
-    "esLintConfig": {
-        "env": {
-            "browser": true,
-            "commonjs": true,
-            "es6": true
-        },
-        "extends": "airbnb",
-        "globals": {
-            "Atomics": "readonly",
-            "SharedArrayBuffer": "readonly"
-        },
-        "parserOptions": {
-            "ecmaFeatures": {
-                "jsx": true
-            },
-            "ecmaVersion": 2018
-        },
-        "plugins": [
-            "react"
-        ],
-        "rules": {}
-    },
-    "babel": {
-        "presets": [
-            "@babel/preset-env",
-            "@babel/preset-react"
-        ]
-    },
-    "prettier": {
-        "trailingComma": "es5",
-        "tabWidth": 4,
-        "semi": false,
-        "singleQuote": true
-    }
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "expect",
+      "afterAll",
+      "jest"
+    ]
+  }
 }

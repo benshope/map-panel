@@ -1,23 +1,22 @@
-# React Timezone Picker
+# Over-Map Layout
 
-![gzip size](http://img.badgesize.io/https://unpkg.com/react-timezone-picker/dist/index.js?compression=gzip&style=for-the-badge)
-[![npm version](https://img.shields.io/npm/v/react-timezone-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/react-timezone-picker)
-[![npm downloads](https://img.shields.io/npm/dm/react-timezone-picker.svg?style=for-the-badge)](https://www.npmjs.com/package/react-timezone-picker)
+![gzip size](http://img.badgesize.io/https://unpkg.com/over-map-layout/dist/index.js?compression=gzip&style=for-the-badge)
+[![npm version](https://img.shields.io/npm/v/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
+[![npm downloads](https://img.shields.io/npm/dm/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
 
-
-This is a React component for selecting a timezone. The implementation is one file, it can be styled, and it has no dependencies.
+This is a React component for adding a responsive, mobile-ready layout over a map. The implementation is one file, it can be styled, and it has no dependencies.
 
 ## Install
 
--   **Npm:** `npm install react-timezone-picker`
--   **Yarn:** `yarn add react-timezone-picker`
+- **Npm:** `npm install over-map-layout`
+- **Yarn:** `yarn add over-map-layout`
 
 ## Use
 
 ```jsx
 import React from 'react';
-import TimezonePicker from 'react-timezone-picker';
+import TimezonePicker from 'over-map-layout';
 
 const MyComponent() => {
         return (
@@ -30,7 +29,7 @@ const MyComponent() => {
 
 ```jsx
 import React from 'react';
-import TimezonePicker from 'react-timezone-picker';
+import TimezonePicker from 'over-map-layout';
 
 const MyComponent() => {
         return (
@@ -60,8 +59,8 @@ Customize timezone picker by passing these, or any other props valid on the `<se
 | unselectLabel | the label for selecting undefined (the undefined option does not appear without a label specified) |
 | style         | styles for the <select> element                                                                    |
 
-See the [examples](https://benshope.github.io/react-timezone-picker) and the [examples source code](https://github.com/benshope/react-timezone-picker/blob/master/stories.js) for more snippets to copy.
+See the [examples](https://benshope.github.io/over-map-layout) and the [examples source code](https://github.com/benshope/over-map-layout/blob/master/stories.js) for more snippets to copy.
 
 ## Help
 
-If there are any examples you'd like to see or use cases I didn't cover, please [file an issue](https://github.com/benshope/react-timezone-picker/issues/new).
+If there are any examples you'd like to see or use cases I didn't cover, please [file an issue](https://github.com/benshope/over-map-layout/issues/new).
