@@ -16,48 +16,19 @@ This is a React component for adding a responsive, mobile-ready layout over a ma
 
 ```jsx
 import React from 'react';
-import TimezonePicker from 'over-map-layout';
+import OverMapLayout from 'over-map-layout';
 
-const MyComponent() => {
-        return (
-            <TimezonePicker onChange={console.log} />
-        )
-    })
+const MyComponent() => (
+    <div style={{ position: 'relative', width: '100%', height: '70vh'}}>
+      <OverMapLayout>{({panelOpen, closePanel}) =>
+        <div style={{height: '200vh'}}>
+            {`Panel Open ${parseInt(panelOpen * 100)}%`}<button style={{opacity: panelOpen}} onClick={closePanel}>Close Panel</button>
+        </div>}
+      </OverMapLayout>
+      <Map />
+    </div>
+  );
 ```
-
-## Use With Options
-
-```jsx
-import React from 'react';
-import TimezonePicker from 'over-map-layout';
-
-const MyComponent() => {
-        return (
-            <TimezonePicker
-                onChange={console.log}
-                defaultValue={'America/New_York'}
-                unselectLabel="No Timezone"
-                style={{
-                    borderRadius: '0.5rem',
-                    background: 'teal',
-                    color: 'white',
-                }}
-            />
-        )
-    })
-```
-
-## Options
-
-Customize timezone picker by passing these, or any other props valid on the `<select />` element, to the component:
-
-| Prop          | Description                                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------------- |
-| onChange      | initial open state of the modal                                                                    |
-| defaultValue  | the value the timezone picker is initially set to                                                  |
-| value         | pass a value into the picker making it a controlled component                                      |
-| unselectLabel | the label for selecting undefined (the undefined option does not appear without a label specified) |
-| style         | styles for the <select> element                                                                    |
 
 See the [examples](https://benshope.github.io/over-map-layout) and the [examples source code](https://github.com/benshope/over-map-layout/blob/master/stories.js) for more snippets to copy.
 
