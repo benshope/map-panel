@@ -47,7 +47,7 @@ export type PanelDivProps = {
 export const PanelDiv = styled.div.attrs<PanelDivProps>(({ margin, panelOpen }) => ({
   style: {
     cursor: !panelOpen ? 'pointer' : 'auto',
-    overflowY: panelOpen ? 'auto' : 'hidden',
+    overflowY: panelOpen === 1 ? 'auto' : 'hidden',
     width: `calc(100% - ${(1 - panelOpen) * margin}px)`
   }
 }))<PanelDivProps>`
