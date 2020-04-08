@@ -5,7 +5,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
 
-This is a React component for adding a responsive, mobile-ready layout over a map. The implementation is one file, it can be styled, and it has no dependencies.
+This is a React/Typescript component for adding a responsive, mobile-ready layout over a map. The implementation is just one file, it can be styled, and it has only peer dependencies.
 
 ## Install
 
