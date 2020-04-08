@@ -68,7 +68,3 @@ See the [examples](https://benshope.github.io/over-map-layout) and the [examples
 ## Help
 
 If there are any examples you'd like to see or use cases I didn't cover, please [file an issue](https://github.com/benshope/over-map-layout/issues/new).
-
-```
-
-```
