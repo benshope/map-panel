@@ -30,7 +30,7 @@ const MyComponent() => (
   );
 ```
 
-See the [examples](https://benshope.github.io/over-map-layout) and the [examples source code](https://github.com/benshope/over-map-layout/blob/master/stories.js) for more snippets to copy.
+See the [examples](https://benshope.github.io/over-map-layout) and the [examples source code](https://github.com/benshope/react-timezone-picker/blob/master/stories.js) for more snippets to copy.
 
 ## Help
 
