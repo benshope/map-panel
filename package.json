@@ -1,6 +1,6 @@
 {
   "name": "over-map-layout",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Over-Map Layout",
   "main": "build/index.js",
   "module": "build/index.es.js",
