@@ -31,8 +31,8 @@ const MyComponent = () => (
 ## Scrolling & Controls Example
 
 ```jsx
-import React from 'react';
-import OverMapLayout, {InnerScrollDiv} from 'over-map-layout';
+import React from "react";
+import OverMapLayout, { InnerScrollDiv } from "over-map-layout";
 
 const MyComponent = () => {
   const breakpoint = 1024;
@@ -60,11 +60,15 @@ const MyComponent = () => {
       <Map />
     </div>
   );
-}
+};
+```
 
 See the [examples](https://benshope.github.io/over-map-layout) and the [examples source code](https://github.com/benshope/over-map-layout/blob/master/stories.tsx) for more snippets to copy.
 
 ## Help
 
 If there are any examples you'd like to see or use cases I didn't cover, please [file an issue](https://github.com/benshope/over-map-layout/issues/new).
+
+```
+
 ```
