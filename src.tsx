@@ -67,6 +67,7 @@ export const PanelDiv = styled.div.attrs<PanelDivProps>(({ margin, panelOpen }) 
   top: calc(100% - ${({ minHeight }) => minHeight}px);
   @media (min-width: ${({ breakpoint }) => breakpoint}px) {
     cursor: auto !important;
+    overflow-y: auto !important;
     top: auto;
     bottom: 0;
     left: ${({ margin }) => margin}px;
