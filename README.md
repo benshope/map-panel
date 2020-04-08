@@ -1,6 +1,6 @@
 # Over-Map Layout
 
-![gzip size](http://img.badgesize.io/https://unpkg.com/over-map-layout/dist/index.js?compression=gzip&style=for-the-badge)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/over-map-layout?label=gzip%20size&style=for-the-badge)](https://bundlephobia.com/result?p=over-map-layout)
 [![npm version](https://img.shields.io/npm/v/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
 [![npm downloads](https://img.shields.io/npm/dm/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
