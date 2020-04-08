@@ -6,8 +6,8 @@ import OverMapLayout, {
   PanelDiv,
   BackgroundDiv,
   InnerScrollDiv,
-  BackgroundDivProps,
-} from "./src";
+  BackgroundDivProps
+} from "./index";
 
 const MockMapDiv = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ stories.add("inner scroll", () => {
     <div style={{ position: "relative", width: "100%", height: "70vh" }}>
       <OverMapLayout
         breakpoint={breakpoint}
-        onScroll={(newPanelY) => {
+        onScroll={newPanelY => {
           setPanelY(newPanelY);
           newPanelY === 1 && setIsOpen(true);
           newPanelY === 0 && setIsOpen(false);
@@ -39,7 +39,7 @@ stories.add("inner scroll", () => {
           style={{
             flex: 0,
             padding: "1rem",
-            background: "#f2f2f2",
+            background: "#f2f2f2"
           }}
         >
           Header Content
@@ -73,8 +73,8 @@ const StyledBackgroundDiv = styled(BackgroundDiv).attrs<BackgroundDivProps>(
   ({ panelY }) => ({
     style: {
       zIndex: panelY ? 2 : 0,
-      background: `hsla(${150 * panelY}, 50%, 50%, ${panelY})`,
-    },
+      background: `hsla(${150 * panelY}, 50%, 50%, ${panelY})`
+    }
   })
 )``;
 
@@ -108,4 +108,3 @@ stories.add("no scroll", () => {
     </div>
   );
 });
-

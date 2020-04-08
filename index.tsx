@@ -37,8 +37,8 @@ export const BackgroundDiv = styled.div.attrs<BackgroundDivProps>(
   ({ panelY }) => ({
     style: {
       zIndex: panelY ? 2 : 0,
-      background: `hsla(0,0%,0%, ${panelY / 4})`,
-    },
+      background: `hsla(0,0%,0%, ${panelY / 4})`
+    }
   })
 )<BackgroundDivProps>`
   position: sticky;
@@ -64,8 +64,8 @@ export const PanelDiv = styled.div.attrs<PanelDivProps>(
   ({ margin, panelY }) => ({
     style: {
       cursor: !panelY ? "pointer" : "auto",
-      width: `calc(100% - ${(1 - panelY) * margin}px)`,
-    },
+      width: `calc(100% - ${(1 - panelY) * margin}px)`
+    }
   })
 )<PanelDivProps>`
   z-index: 2;
@@ -99,7 +99,6 @@ type StateProps = {
 };
 
 export type LayoutProps = {
-  children: any;
   onScroll?: (panelState: number) => void;
   isOpen?: boolean;
   breakpoint?: number;
@@ -123,11 +122,11 @@ export const Layout: React.FC<LayoutProps> = React.memo(
     margin = 16,
     panel = PanelDiv,
     container = PanelContainerDiv,
-    background = BackgroundDiv,
+    background = BackgroundDiv
   }) => {
     const [state, setState] = React.useState<StateProps>({
       isOpen: false,
-      panelY: 0,
+      panelY: 0
     });
     const containerRef = React.useRef<HTMLDivElement>(null);
     const panelRef = React.useRef<HTMLDivElement>(null);
@@ -149,7 +148,7 @@ export const Layout: React.FC<LayoutProps> = React.memo(
       if (containerRef.current && panelRef.current) {
         containerRef.current.scrollTo({
           top: containerRef.current.offsetHeight,
-          behavior: "smooth",
+          behavior: "smooth"
         });
       }
     };
@@ -179,7 +178,7 @@ export const Layout: React.FC<LayoutProps> = React.memo(
         (e.currentTarget.scrollHeight - e.currentTarget.offsetHeight);
       setProps({
         isOpen: panelY === 1 ? true : panelY === 0 ? false : state.isOpen,
-        panelY,
+        panelY
       });
       if (onScroll) {
         onScroll(panelY);
