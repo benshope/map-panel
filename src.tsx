@@ -1,10 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 export type BackgroundDivProps = {
-  panelOpen: number
-  breakpoint: number
-}
+  panelY: number;
+  breakpoint: number;
+};
 
 export const PanelContainerDiv = styled.div`
   height: 100%;
@@ -17,14 +17,30 @@ export const PanelContainerDiv = styled.div`
     display: none;
   }
   -ms-overflow-style: none;
-`
+`;
 
-export const BackgroundDiv = styled.div.attrs<BackgroundDivProps>(({ panelOpen }) => ({
-  style: {
-    zIndex: panelOpen ? 2 : 0,
-    background: `hsla(0,0%,0%, ${panelOpen / 4})`
+export type InnerScrollDivProps = {
+  breakpoint: number;
+  panelY: number;
+};
+
+export const InnerScrollDiv = styled.div<InnerScrollDivProps>`
+  flex: 1;
+  overflow-y: auto;
+  flex-shrink: ${({ panelY }) => (panelY === 1 ? 1 : 0)};
+  @media (min-width: ${({ breakpoint }) => breakpoint}px) {
+    flex-shrink: 1;
   }
-}))<BackgroundDivProps>`
+`;
+
+export const BackgroundDiv = styled.div.attrs<BackgroundDivProps>(
+  ({ panelY }) => ({
+    style: {
+      zIndex: panelY ? 2 : 0,
+      background: `hsla(0,0%,0%, ${panelY / 4})`,
+    },
+  })
+)<BackgroundDivProps>`
   position: sticky;
   top: 0;
   left: 0;
@@ -35,150 +51,167 @@ export const BackgroundDiv = styled.div.attrs<BackgroundDivProps>(({ panelOpen }
     opacity: 0;
     pointer-events: none;
   }
-`
+`;
 
 export type PanelDivProps = {
-  panelOpen: number
-  breakpoint: number
-  margin: number
-  minHeight: number
-}
+  panelY: number;
+  breakpoint: number;
+  margin: number;
+  minHeight: number;
+};
 
-export const PanelDiv = styled.div.attrs<PanelDivProps>(({ margin, panelOpen }) => ({
-  style: {
-    cursor: !panelOpen ? 'pointer' : 'auto',
-    overflowY: panelOpen === 1 ? 'auto' : 'hidden',
-    width: `calc(100% - ${(1 - panelOpen) * margin}px)`
-  }
-}))<PanelDivProps>`
+export const PanelDiv = styled.div.attrs<PanelDivProps>(
+  ({ margin, panelY }) => ({
+    style: {
+      cursor: !panelY ? "pointer" : "auto",
+      width: `calc(100% - ${(1 - panelY) * margin}px)`,
+    },
+  })
+)<PanelDivProps>`
   z-index: 2;
   position: absolute;
   margin: auto 0px;
-  background: white;
-  border-radius: 8px 8px 0px 0px;
   display: flex;
   flex-direction: column;
+  background: white;
+  overflow-y: hidden;
+  border-radius: 8px 8px 0px 0px;
   left: 0;
   max-width: 448px;
   max-height: calc(100% - ${({ margin }) => margin}px);
   pointer-events: all;
   left: 50%;
   transform: translateX(-50%);
+  min-height: ${({ minHeight }) => minHeight}px;
   top: calc(100% - ${({ minHeight }) => minHeight}px);
   @media (min-width: ${({ breakpoint }) => breakpoint}px) {
     cursor: auto !important;
-    overflow-y: auto !important;
     top: auto;
     bottom: 0;
     left: ${({ margin }) => margin}px;
     transform: translateX(0%);
   }
-`
+`;
 
 type StateProps = {
-  isOpen: boolean
-  innerScroll: number
-  outerScroll: number
-}
+  isOpen: boolean;
+  panelY: number;
+};
 
 export type LayoutProps = {
-  panelOpen?: number
-  breakpoint?: number
-  minHeight?: number
-  maxWidth?: number
-  margin?: number
-  snapback?: number
-  panel?: React.FunctionComponent<PanelDivProps>
-  container?: React.FunctionComponent<{}>
-  background?: React.FunctionComponent<BackgroundDivProps>
-  children: (props: {panelOpen: number; closePanel: () => void;}) => React.ReactNode
-}
+  onScroll?: (panelState: number) => void;
+  isOpen?: boolean;
+  breakpoint?: number;
+  minHeight?: number;
+  maxWidth?: number;
+  margin?: number;
+  snapback?: number;
+  panel?: React.FunctionComponent<PanelDivProps>;
+  container?: React.FunctionComponent<{}>;
+  background?: React.FunctionComponent<BackgroundDivProps>;
+};
 
-export const Layout: React.FC<LayoutProps> = ({
-  children,
-  snapback = 48,
-  minHeight = 128,
-  breakpoint = 1024,
-  margin = 16,
-  panel = PanelDiv,
-  container = PanelContainerDiv,
-  background = BackgroundDiv
-}) => {
-  const [state, setState] = React.useState<StateProps>({
-    isOpen: false,
-    innerScroll: 0,
-    outerScroll: 0
-  })
-  const containerRef = React.useRef<HTMLDivElement>(null)
-  const panelRef = React.useRef<HTMLDivElement>(null)
+export const Layout: React.FC<LayoutProps> = React.memo(
+  ({
+    children,
+    onScroll,
+    isOpen,
+    snapback = 48,
+    minHeight = 128,
+    breakpoint = 1024,
+    margin = 16,
+    panel = PanelDiv,
+    container = PanelContainerDiv,
+    background = BackgroundDiv,
+  }) => {
+    const [state, setState] = React.useState<StateProps>({
+      isOpen: false,
+      panelY: 0,
+    });
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const panelRef = React.useRef<HTMLDivElement>(null);
 
-  const setProps = (props: Partial<StateProps>) => setState({ ...state, ...props })
+    const setProps = (props: Partial<StateProps>) => {
+      setState({ ...state, ...props });
+    };
 
-  const closePanel = () => {
-    if (panelRef.current) {
-      panelRef.current.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-    if (containerRef.current) {
-      containerRef.current.scrollTo({ top: 0, behavior: 'smooth' })
-      setProps({isOpen: false});
-    }
-  }
-
-  const openPanel = () => {
-    if (containerRef.current && panelRef.current) {
-      containerRef.current.scrollTo({
-        top: containerRef.current.offsetHeight,
-        behavior: 'smooth'
-      })
-      setProps({isOpen: true});
-    }
-  }
-
-  const snapScroll = () => {
-      if (containerRef.current) {
-            const offset = state.isOpen ? 
-           containerRef.current.scrollTop :
-           containerRef.current.scrollHeight - containerRef.current.scrollTop;
-           return Math.abs(offset) > snapback ? openPanel() : closePanel();
+    const closePanel = () => {
+      if (panelRef.current) {
+        panelRef.current.scrollTo({ top: 0, behavior: "smooth" });
       }
-  }
+      if (containerRef.current) {
+        containerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
 
-  const onOuterScroll = (e: React.UIEvent<HTMLElement>) =>
-    setProps({
-      outerScroll:
+    const openPanel = () => {
+      if (containerRef.current && panelRef.current) {
+        containerRef.current.scrollTo({
+          top: containerRef.current.offsetHeight,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    React.useEffect(() => {
+      if (isOpen !== undefined) {
+        (isOpen ? openPanel : closePanel)();
+      }
+    }, [isOpen, containerRef.current]);
+
+    const snapScroll = () => {
+      if (
+        containerRef.current &&
+        ((state.isOpen && state.panelY < 1) ||
+          (!state.isOpen && state.panelY > 0))
+      ) {
+        const offset = state.isOpen
+          ? containerRef.current.scrollTop
+          : containerRef.current.scrollHeight - containerRef.current.scrollTop;
+        return Math.abs(offset) > snapback ? openPanel() : closePanel();
+      }
+    };
+
+    const onScrollPanel = (e: React.UIEvent<HTMLElement>) => {
+      const panelY =
         e.currentTarget.scrollTop /
-        (e.currentTarget.scrollHeight - e.currentTarget.offsetHeight)
-    })
-  const onInnerScroll = (e: React.UIEvent<HTMLElement>) =>
-    setProps({
-      innerScroll: e.currentTarget.scrollTop
-    })
+        (e.currentTarget.scrollHeight - e.currentTarget.offsetHeight);
+      setProps({
+        isOpen: panelY === 1 ? true : panelY === 0 ? false : state.isOpen,
+        panelY,
+      });
+      if (onScroll) {
+        onScroll(panelY);
+      }
+    };
 
-  const panelOpen = state.outerScroll
-  const Panel = panel;
-  const Container = container;
-  const Background = background;
-  return (
+    const Panel = panel;
+    const Container = container;
+    const Background = background;
+    return (
       <Container
         ref={containerRef}
-        onScroll={onOuterScroll}
+        onScroll={onScrollPanel}
         onTouchEnd={snapScroll}
-        onMouseUp={snapScroll}
       >
-        <Background onClick={closePanel} panelOpen={panelOpen} breakpoint={breakpoint} />
+        <Background
+          onClick={closePanel}
+          panelY={state.panelY}
+          breakpoint={breakpoint}
+        />
         <Panel
           ref={panelRef}
           minHeight={minHeight}
           margin={margin}
           breakpoint={breakpoint}
-          onClick={!panelOpen ? openPanel : () => null}
-          panelOpen={panelOpen}
-          onScroll={onInnerScroll}
+          onClick={!state.panelY ? openPanel : () => null}
+          panelY={state.panelY}
         >
-          {children({panelOpen, closePanel})}
+          {children}
         </Panel>
       </Container>
-  )
-}
+    );
+  }
+);
 
-export default Layout
+export default Layout;
