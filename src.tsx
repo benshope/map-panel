@@ -99,6 +99,7 @@ type StateProps = {
 };
 
 export type LayoutProps = {
+  children: any;
   onScroll?: (panelState: number) => void;
   isOpen?: boolean;
   breakpoint?: number;
