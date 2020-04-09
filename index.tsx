@@ -103,7 +103,6 @@ export type LayoutProps = {
   isOpen?: boolean;
   breakpoint?: number;
   minHeight?: number;
-  maxWidth?: number;
   margin?: number;
   snapback?: number;
   panel?: React.FunctionComponent<PanelDivProps>;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 
-import OverMapLayout, {
+import MapPanel, {
   PanelDiv,
   BackgroundDiv,
   InnerScrollDiv,
@@ -26,7 +26,7 @@ stories.add("inner scroll", () => {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "70vh" }}>
-      <OverMapLayout
+      <MapPanel
         breakpoint={breakpoint}
         onScroll={newPanelY => {
           setPanelY(newPanelY);
@@ -55,7 +55,7 @@ stories.add("inner scroll", () => {
             </p>
           </div>
         </InnerScrollDiv>
-      </OverMapLayout>
+      </MapPanel>
       <MockMapDiv />
     </div>
   );
@@ -80,9 +80,9 @@ const StyledBackgroundDiv = styled(BackgroundDiv).attrs<BackgroundDivProps>(
 
 stories.add("styled", () => (
   <div style={{ position: "relative", width: "100%", height: "70vh" }}>
-    <OverMapLayout panel={StyledPanelDiv} background={StyledBackgroundDiv}>
+    <MapPanel panel={StyledPanelDiv} background={StyledBackgroundDiv}>
       <div style={{ minHeight: "200vh" }}>{`Panel With Fancy Styles`}</div>
-    </OverMapLayout>
+    </MapPanel>
     <MockMapDiv />
   </div>
 ));
@@ -90,9 +90,9 @@ stories.add("styled", () => (
 stories.add("short scroll", () => {
   return (
     <div style={{ position: "relative", width: "100%", height: "70vh" }}>
-      <OverMapLayout>
+      <MapPanel>
         <div style={{ height: "50vh" }}>{`Panel Content`}</div>
-      </OverMapLayout>
+      </MapPanel>
       <MockMapDiv />
     </div>
   );
@@ -101,9 +101,9 @@ stories.add("short scroll", () => {
 stories.add("no scroll", () => {
   return (
     <div style={{ position: "relative", width: "100%", height: "70vh" }}>
-      <OverMapLayout>
+      <MapPanel>
         <div style={{ flex: 1 }}>{`Panel Content`}</div>
-      </OverMapLayout>
+      </MapPanel>
       <MockMapDiv />
     </div>
   );

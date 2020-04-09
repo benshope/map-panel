@@ -1,28 +1,28 @@
-# Over-Map Layout
+# Map Panel
 
-[![gzip size](https://img.shields.io/bundlephobia/minzip/over-map-layout?label=gzip%20size&style=for-the-badge)](https://bundlephobia.com/result?p=over-map-layout)
-[![npm version](https://img.shields.io/npm/v/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
-[![npm downloads](https://img.shields.io/npm/dm/over-map-layout.svg?style=for-the-badge)](https://www.npmjs.com/package/over-map-layout)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/map-panel?label=gzip%20size&style=for-the-badge)](https://bundlephobia.com/result?p=map-panel)
+[![npm version](https://img.shields.io/npm/v/map-panel.svg?style=for-the-badge)](https://www.npmjs.com/package/map-panel)
+[![npm downloads](https://img.shields.io/npm/dm/map-panel.svg?style=for-the-badge)](https://www.npmjs.com/package/map-panel)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
 
-This is a React/Typescript component for adding a responsive, mobile-ready layout over a map. The implementation is just one file, it can be styled, and it has only peer dependencies.
+This is a React/Typescript component for adding a responsive, mobile-ready panel over a map. The implementation is just one file, it can be styled, and it has only peer dependencies.
 
 ## Install
 
-- **Npm:** `npm install over-map-layout`
-- **Yarn:** `yarn add over-map-layout`
+- **Npm:** `npm install map-panel`
+- **Yarn:** `yarn add map-panel`
 
 ## Basic Example
 
 ```jsx
 import React from "react";
-import OverMapLayout from "over-map-layout";
+import MapPanel from "map-panel";
 
 const MyComponent = () => (
   <div style={{ position: "relative", width: "100%", height: "70vh" }}>
-    <OverMapLayout>
+    <MapPanel>
       <div style={{ flex: 1 }}>{`Panel Content`}</div>
-    </OverMapLayout>
+    </MapPanel>
     <Map />
   </div>
 );
@@ -32,7 +32,7 @@ const MyComponent = () => (
 
 ```jsx
 import React from "react";
-import OverMapLayout, { InnerScrollDiv } from "over-map-layout";
+import MapPanel, { InnerScrollDiv } from "map-panel";
 
 const MyComponent = () => {
   const breakpoint = 1024;
@@ -40,9 +40,9 @@ const MyComponent = () => {
   const [isOpen, setIsOpen] = React.useState(null);
   return (
     <div style={{ position: "relative", width: "100%", height: "70vh" }}>
-      <OverMapLayout
+      <MapPanel
         breakpoint={breakpoint}
-        onScroll={(newPanelY) => {
+        onScroll={newPanelY => {
           setPanelY(newPanelY);
           newPanelY === 1 && setIsOpen(true);
           newPanelY === 0 && setIsOpen(false);
@@ -56,15 +56,15 @@ const MyComponent = () => {
             </button>
           </div>
         </InnerScrollDiv>
-      </OverMapLayout>
+      </MapPanel>
       <Map />
     </div>
   );
 };
 ```
 
-See the [examples](https://benshope.github.io/over-map-layout) and the [examples source code](https://github.com/benshope/over-map-layout/blob/master/stories.tsx) for more snippets to copy.
+See the [examples](https://benshope.github.io/map-panel) and the [examples source code](https://github.com/benshope/map-panel/blob/master/stories.tsx) for more snippets to copy.
 
 ## Help
 
-If there are any examples you'd like to see or use cases I didn't cover, please [file an issue](https://github.com/benshope/over-map-layout/issues/new).
+If there are any examples you'd like to see or use cases I didn't cover, please [file an issue](https://github.com/benshope/map-panel/issues/new).

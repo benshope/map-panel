@@ -1,7 +1,7 @@
 {
-  "name": "over-map-layout",
-  "version": "0.0.9",
-  "description": "Over-Map Layout",
+  "name": "map-panel",
+  "version": "0.0.1",
+  "description": "Over-Map Panel",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "jsnext:main": "build/index.es.js",
