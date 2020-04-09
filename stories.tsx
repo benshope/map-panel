@@ -49,9 +49,11 @@ stories.add("inner scroll", () => {
             <p>{`Components can listen on panelY: ${panelY.toFixed(2)}`}</p>
             <p>
               {`The panel can also be opened or closed`}
-              <button onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? "Close" : "Open"} Panel
-              </button>
+              {panelY === 0 || panelY === 1 ? (
+                <button onClick={() => setIsOpen(!isOpen)}>
+                  {isOpen ? "Close" : "Open"} Panel
+                </button>
+              ) : null}
             </p>
           </div>
         </InnerScrollDiv>
